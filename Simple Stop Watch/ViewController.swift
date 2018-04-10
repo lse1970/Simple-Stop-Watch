@@ -16,9 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        myTimer = Timer.scheduledTimer(withTimeInterval: 1/100, repeats: true, block: {(myTimer) in
-            self.updateTime()
-        })
+       //myTimer = Timer.scheduledTimer(withTimeInterval: 1/100, repeats: true, block: {(myTimer) in self.updateTime()})
     }
 
     func updateTime() {
@@ -29,5 +27,15 @@ class ViewController: UIViewController {
         timeLabel.text = String(format: "%02d:%02d:%02d", min, sec, msec)
     }
 
+    @IBAction func start(_ sender: Any) {
+        myTimer = Timer.scheduledTimer(withTimeInterval: 1/100, repeats: true, block: {(myTimer) in self.updateTime()}) //스탑워치 실행
+    }
+    @IBAction func stop(_ sender: Any) {
+        myTimer.invalidate()    //스탑워치 중지
+    }
+    @IBAction func reset(_ sender: Any) {
+        myTimer.invalidate()
+        timeLabel.text = "00:00:00" //스탑워치 초기화
+    }
 }
 
